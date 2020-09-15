@@ -1,19 +1,9 @@
-import requests
-from requests_oauthlib import OAuth1
-import os
+import twitter
+import settings
 
-url = 'https://api.twitter.com/1.1/statuses/update.json'
+success, err = twitter.tweet('Hello world from Python')
 
-auth = OAuth1(
-  os.getenv('API_KEY'), 
-  os.getenv('API_SECRET_KEY'), 
-  os.getenv('ACCESS_TOKEN'), 
-  os.getenv('ACCESS_TOKEN_SECRET'))
-
-r = requests.post(
-  url, 
-  data={ 'status': 'This is a test tweet made with Python' },
-  auth=auth)
-
-print(r.status_code)
-print(r.json())
+if not success:
+  print(err)
+else:
+  print('Successfully tweeted')
