@@ -1,5 +1,5 @@
-# better-bf-bot
-Simple bot that tweets compliments for specified users.
+# compliment-a-bot
+Simple Twitter bot that tweets compliments for specified users.
 
 # Run
 - Add Twitter usernames of people you want to compliment (separated by new line)
