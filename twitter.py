@@ -12,9 +12,12 @@ def tweet(text, user=None):
     os.getenv('BBB_ACCESS_TOKEN'), 
     os.getenv('BBB_ACCESS_TOKEN_SECRET'))
     
+  if user != None:
+    text = f'@{user}, {text}'
+
   r = requests.post(
     url, 
-    data={ 'status': text },
+    data={ 'status': text, 'trim_user': 'true' },
     auth=auth)
   
   if r.ok:

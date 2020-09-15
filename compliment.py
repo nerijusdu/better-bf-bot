@@ -1,9 +1,14 @@
-import requests
+import js2py
+from pathlib import Path
 
-url = 'https://complimentr.com/api'
+path = Path(__file__).parent / "./complimentGenerator.js"
+
+jsGenerator = ''
+getCompliment = None
+
+with open(path, 'r') as file:
+  jsGenerator = file.read()
+  getCompliment = js2py.eval_js(jsGenerator)
 
 def get():
-  r = requests.get(url)
-  if r.ok:
-    return True, r.json()['compliment'].capitalize()
-  return False, 'Request failed'
+  return getCompliment().capitalize()
