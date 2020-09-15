@@ -17,8 +17,9 @@ def tweet(text, user=None):
     data={ 'status': text },
     auth=auth)
   
-  if r.status_code >= 300 or r.status_code < 200:
-    data = r.json()
-    return False, data['errors'][0]['message']
+  if r.ok:
+    return True, ''
   
-  return True, ''
+  data = r.json()
+  return False, data['errors'][0]['message']
+  
